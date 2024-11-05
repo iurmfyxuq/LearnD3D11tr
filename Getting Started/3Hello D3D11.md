@@ -1,12 +1,14 @@
-在这一章中，我们将给你介绍D3D11的基础使用，如何创建ID3D11Device同时如何使用它以展示一些东西在我们的窗体中。在最后的章节里，我们建立了一个基础实现为应用程序带窗体通过GLFW。实现在Main.cpp与Application.cpp中不会出现在这里。
+# Hello D3D11
+
+在这一章中，我们将为你介绍D3D11的基础使用，如何创建ID3D11Device同时如何使用它以展示一些东西在我们的窗体中。在最后的章节里，我们建立了一个基础实现为应用程序带窗体通过GLFW。在这里，Main.cpp与Application.cpp将不会出现。
 
 如果你正在看这一章的源码的话，你会注意到Application.cpp与Application.hpp不存在，那时因为我们已经把这两个文件移动到一个单独的Framework工程中，它将创建一个静态库用来缓和章节之间的开发。这个Framework工程将会包含在所有工程项目之间共享的代码，因此它可能会包含很多其他没被使用或是与某些章节不相关的文件。
 
-Framework工程可以在这里查看。
+Framework工程可以在[这里](https://github.com/GraphicsProgramming/learnd3d11/tree/main/src/Cpp/Framework)查看。
 
 请注意，已经存在文件中的代码也是会修改的为了迎合更新的章节与他们的需要。
 
-然而，让我们开始让我们拆封相关的部分以向你展示新类从Application类派生的看起来像什么。
+然而，让我们开始让我们来分解相关的部分以向你展示新类从Application类派生的看起来像什么。
 
 ## HelloD3D11Application.hpp
 ```c++
@@ -149,5 +151,6 @@ ComPtr<ID3D11DeviceContext> _deviceContext = nullptr;
 ComPtr<IDXGISwapChain1> _swapChain = nullptr;
 ComPtr<ID3D11RenderTargetView> _renderTarget = nullptr;
 ```
-你可能注意到了，我们并没有使用原始指针，而是ComPtr。DirectX是构筑在COM（组件对象模型Component Object Model），同时COM对象使用引用计数来管理对象的生命周期，以AddRef和Release方法的形式。`ComPtr<T>`为我们包装了这些功能，通过创建智能指针，你可以在这里了解更多信息。
+你可能注意到了，我们并没有使用原始指针，而是ComPtr。DirectX是构筑在COM（组件对象模型Component Object Model），同时COM对象使用引用计数来管理对象的生命周期，以AddRef和Release方法的形式。`ComPtr<T>`为我们包装了这些功能，通过创建智能指针，你可以在[这里](https://learn.microsoft.com/zh-cn/cpp/cppcx/wrl/comptr-class?view=msvc-170)了解更多信息。
 
+IDXGIFactory2帮助我们查找我们能够使用去运行的我们图形的适配器。它能列举处所以存在的适配器（GPU），其中有几个安装在你的系统中。如果你有一台笔记本，那就有可能和你的cpu合并，但是通常现在的笔记本也会有独立显卡，或者是你的pc可能安装了不止1张显卡，通过IDXGIFactory2，我们可以挑选其中的一张。它同时也为我能创建交换链，一个用于春初渲染数据的surface，呈现它在输出（或是屏幕）。

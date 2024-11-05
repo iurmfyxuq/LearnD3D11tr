@@ -1,3 +1,5 @@
+# Hello Window
+
 注意
 如果你想尝试在不下载完整源码的情况下跟者这个系列，你可以使用这个空项目作为起点，它已经配置好了全部的包含路径与库，这些配置将适用于整个系列的学习
 
@@ -42,7 +44,7 @@ int main(int argc, char* argv[])
 }
 ```
 
-现在，让我们仔细看看这个例子的更多细节。
+现在，让我们仔细分析这个例子。
 
 ```c++
 #include <GLFW/glfw3.h>
@@ -108,7 +110,7 @@ while (!glfwWindowShouldClose(window))
     // future render code
 }
 ```
-这里在某种程度上来说是你的应用程序的核心，主循环。你也可以称之为游戏循环，因为在这里发生一切。渲染，键盘和鼠标输入，对此做出回应，告诉显卡在场景里放一只青蛙，它就会一直做这件事，直到它获得不需要处理任何事物的信息，因为你关闭窗体，像是（glfwWindowShouldClose）或者点击ESC键和映射了ESC去关闭窗体。glfwPollEvents 将会确保GLFW知道关于一切需要的从操作系统来的事件
+这里在某种程度上来说是你的应用程序的核心，主循环。你也可以称之为游戏循环，因为在这里发生一切。渲染，键盘和鼠标输入，对此做出回应，告诉显卡在场景里绘制一只青蛙，它就会一直做这件事，直到它获得不需要处理任何事物的信号，因为你关闭窗体，例如（glfwWindowShouldClose）或者点击ESC键和映射了ESC去关闭窗体。glfwPollEvents 将会确保GLFW知道关于一切需要的从操作系统来的事件
 
 ```c++
 glfwDestroyWindow(window);
@@ -130,7 +132,7 @@ glfwDestroyWindow函数将会显示的销毁窗口，同时，glfwTerminate函�
 * SDL2
 * SFML
 
-你也可以使用操作系统提供的原生函数与构造，在windows上就是WinAPI，尽管这是老的并且不是全部都得是你必须做的的很多微软自己的指南依赖WinAPI，因此我们提供了一个实例，我们将不会包含任何Win32的主题，除非这是明确需要的。
+你也可以使用操作系统提供的原生函数与构造，在windows上就是WinAPI，尽管那玩意老掉牙而且你要不需要将所有事都自己来干。但由于很多微软自己的指南依赖于WinAPI，因此我们在这里提供了一个例子。除非明确需要，否则我们将不会包含任何有关Win32的主题。
 
 你可能会在阅读完这篇教程后去编写自己的引擎，要支持多种平台，而不只是windows，因此这里以及包含了GLFW。
 
@@ -334,7 +336,7 @@ Load函数的目的是加载所有的应用程序运行所需的全部资产，�
 
 Update方法主要包含询问是否按下键盘与鼠标的，更新变量，等等其他事情，而将实例反映到显示器上这是Render方法。
 
-你大概也注意到了，所有在Application类中收保护的方法都是虚拟的，那是因为我们从Application类中派生了HelloWindowApplication类，并且只关注与这四个方法，如果需要的话。我们现在暂时不需要处理主循环
+你大概也注意到了，所有在Application类中受保护的方法都是虚拟的，那是因为我们从Application类中派生了HelloWindowApplication类，并且只关注与这四个方法，如果需要的话。我们现在暂时不需要处理主循环
 ```c++
 virtual void Cleanup();
 virtual bool Initialize();
@@ -343,10 +345,11 @@ virtual void Render() = 0;
 virtual void Update() = 0;
 ```
 
-如果你运行这个例子，你会得到一个与之前一样的窗口，只有代码被分解变得更符合逻辑，这将会使我们的生活更容易在我们移动在添加更多代码时。
+如果你运行这个例子，你会得到一个与之前一样的窗口，只有代码被变得更符合逻辑，这将在我们移动在添加更多代码时，使我们的生活更容易。
+(which will make our life easier as we move on adding more and more.)
 
-没有抽象的HelloWorld项目
+[没有抽象的HelloWorld项目](https://github.com/GraphicsProgramming/learnd3d11/tree/main/src/Cpp/1-getting-started/1-1-1-HelloGLFWWindow)
 
-WinAPI版本的HelloWorld项目
+[WinAPI版本的HelloWorld项目](https://github.com/GraphicsProgramming/learnd3d11/tree/main/src/Cpp/1-getting-started/1-1-1-HelloWin32Window)
 
-项目
+[GitHub项目](https://github.com/GraphicsProgramming/learnd3d11/tree/main/src/Cpp/1-getting-started/1-1-1-HelloWindow)

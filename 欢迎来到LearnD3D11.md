@@ -8,4 +8,4 @@ LearnD3D11是一份面向所有希望学习Direct3D11人士的指南，也就是
 
 ## 开始吧
 
-开始阅读LearnD3D11，你可以从这里跳转到第一章。
+开始阅读LearnD3D11，你可以从[这里](./Getting%20Started/1概述.md)跳转到第一章。
